@@ -45,10 +45,19 @@ async function getAllMovies() {
   console.log(movies);
 }
 
+// Get specific movie by id
+async function getMovieById(movieId: number) {
+  const movie = await prisma.movie.findUnique({
+    where: { id: movieId },
+  });
+  console.log(movie);
+}
+
 async function main() {
   await createMovie();
   await createMultipleMovies();
   await getAllMovies();
+  await getMovieById(1);
 }
 
 main()
