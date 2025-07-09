@@ -69,6 +69,14 @@ async function updateMovie(
   console.log(updatedMovie);
 }
 
+// Delete movie by id
+async function deleteMovie(movieId: number) {
+  const deletedMovie = await prisma.movie.delete({
+    where: { id: movieId },
+  });
+  console.log(deletedMovie);
+}
+
 async function main() {
   await createMovie();
   await createMultipleMovies();
@@ -79,6 +87,7 @@ async function main() {
     "Inception Updated",
     "Updated description for Inception"
   );
+  await deleteMovie(1);
 }
 
 main()
