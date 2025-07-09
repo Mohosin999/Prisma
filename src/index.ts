@@ -53,11 +53,32 @@ async function getMovieById(movieId: number) {
   console.log(movie);
 }
 
+// Update movie by id
+async function updateMovie(
+  movieId: number,
+  updatedTitle: string,
+  updatedDescription: string
+) {
+  const updatedMovie = await prisma.movie.update({
+    where: { id: movieId },
+    data: {
+      title: updatedTitle,
+      description: updatedDescription,
+    },
+  });
+  console.log(updatedMovie);
+}
+
 async function main() {
   await createMovie();
   await createMultipleMovies();
   await getAllMovies();
   await getMovieById(1);
+  await updateMovie(
+    1,
+    "Inception Updated",
+    "Updated description for Inception"
+  );
 }
 
 main()
