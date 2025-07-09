@@ -39,9 +39,16 @@ async function createMultipleMovies() {
   });
 }
 
+// Get all movies from the database
+async function getAllMovies() {
+  const movies = await prisma.movie.findMany();
+  console.log(movies);
+}
+
 async function main() {
   await createMovie();
   await createMultipleMovies();
+  await getAllMovies();
 }
 
 main()
