@@ -45,3 +45,14 @@ model Post {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 }
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  post      Post     @relation("PostComments", fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+  author    User     @relation("UserComments", fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
